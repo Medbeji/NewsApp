@@ -16,14 +16,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        
-        
         window =  UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
-
-        window?.rootViewController = centerContainer
-        
-        
+        let layout = UICollectionViewFlowLayout()
+        let newsVC = NewsVC(collectionViewLayout: layout)
+        let navContoller = UINavigationController(rootViewController: newsVC)
+        window?.rootViewController = navContoller
+    
         return true
     }
 
