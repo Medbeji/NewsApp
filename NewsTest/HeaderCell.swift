@@ -29,7 +29,6 @@ class HeaderCell : UICollectionViewCell {
     }
     
     func setupViews(){
-        backgroundColor = .green
         addSubview(headerLabel)
         headerLabel.anchor(topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, topConstant: 20, leftConstant: 8, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 45)
     }

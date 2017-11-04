@@ -16,12 +16,25 @@ class NewsVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     private let headerCellId = "headerCellId"
 
     
+    let categories : [Category]? = []
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        fetchCategories()
         navigationControllerSetup()
         collectionsViewsSetup()
+        
+    }
+    
+    
+    fileprivate func fetchCategories(){
+        // Call Services For getting The List Of Articles
+        
+        
+        
         
     }
     
@@ -35,7 +48,6 @@ class NewsVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 //        collectionView?.register(HeaderChannelCell.self, forCellWithReuseIdentifier: headerCellId)
         collectionView?.register(HeaderCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerCellId)
         collectionView?.backgroundColor = .white
-    
     }
     
     
@@ -43,14 +55,9 @@ class NewsVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
         return 3
     }
     
-    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! CategoryCell
-        
         cell.rootVC = self
-        
-        
-        
         return cell
     }
     

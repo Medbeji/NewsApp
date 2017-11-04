@@ -30,9 +30,10 @@ class CategoryCell : UICollectionViewCell, UICollectionViewDataSource, UICollect
     
     let channelsCollectionsView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 0)
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .yellow
+        collectionView.backgroundColor = .white
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
         
@@ -46,32 +47,23 @@ class CategoryCell : UICollectionViewCell, UICollectionViewDataSource, UICollect
         return label
     }()
     
-    let seeAllBtn : UIButton = {
-       let btn = UIButton()
-        btn.setTitle("see all", for: .normal)
-        btn.addTarget(self, action: #selector(openNewChannel), for: .touchUpInside)
-        return btn
-    }()
-    
     
     func openNewChannel() {
          print("Hello world")
     }
     
     func setupViews(){
-        backgroundColor = .blue
+        backgroundColor = .white
         addSubview(channelsCollectionsView)
         addSubview(categoryLabel)
-        addSubview(seeAllBtn)
         categoryLabel.anchor(topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, topConstant: 14, leftConstant: 8, bottomConstant: 0, rightConstant: 60, widthConstant: 0, heightConstant: 34)
-        seeAllBtn.anchor(topAnchor, left: nil, bottom: nil, right: rightAnchor, topConstant: 12 , leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 60, heightConstant: 28)
         
         
         self.channelsCollectionsView.delegate = self
         self.channelsCollectionsView.dataSource = self
         
         self.channelsCollectionsView.register(NewsChannelCell.self, forCellWithReuseIdentifier: cellId)
-        self.channelsCollectionsView.anchor(self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 50, leftConstant: 10, bottomConstant: 3, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        self.channelsCollectionsView.anchor(self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 50, leftConstant: 0, bottomConstant: 3, rightConstant: 0, widthConstant: 0, heightConstant: 0)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -85,7 +77,7 @@ class CategoryCell : UICollectionViewCell, UICollectionViewDataSource, UICollect
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 150, height: frame.height)
+        return CGSize(width: 150, height: 150 )
     }
     
     
