@@ -16,7 +16,10 @@ class CategoryCell : UICollectionViewCell, UICollectionViewDataSource, UICollect
     
     var category: Category? {
         didSet {
-            self.channelsCollectionsView.reloadData()
+            if let category = category {
+                self.categoryLabel.text = category.name
+                self.channelsCollectionsView.reloadData()
+            }
         }
     }
     
@@ -78,6 +81,10 @@ class CategoryCell : UICollectionViewCell, UICollectionViewDataSource, UICollect
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = channelsCollectionsView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! NewsChannelCell
+        
+        if let category = self.category {
+            cell.channel = category.channels![indexPath.item]
+        }
         return cell
     }
     
