@@ -14,6 +14,13 @@ class CategoryCell : UICollectionViewCell, UICollectionViewDataSource, UICollect
     
     var rootVC: NewsVC?
     
+    var category: Category? {
+        didSet {
+            self.channelsCollectionsView.reloadData()
+        }
+    }
+    
+    
     private let cellId = "channelCellId"
     
     override init(frame: CGRect) {
@@ -36,7 +43,6 @@ class CategoryCell : UICollectionViewCell, UICollectionViewDataSource, UICollect
         collectionView.backgroundColor = .white
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
-        
     }()
     
     let categoryLabel : UILabel = {
@@ -67,7 +73,7 @@ class CategoryCell : UICollectionViewCell, UICollectionViewDataSource, UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return (category != nil) ? category!.channels!.count : 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

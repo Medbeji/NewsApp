@@ -44,10 +44,9 @@ class ChannelVC: UICollectionViewController, UICollectionViewDelegateFlowLayout 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: newsCellId, for: indexPath) as! NewsCell
     
+        // Passing the current UICollectionViewController to the cell ( For navigation purpose)
         cell.rootVC = self
         
-        // Configure the cell
-    
         return cell
     }
     

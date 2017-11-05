@@ -8,14 +8,30 @@
 
 import Foundation
 
-//enum Catgory {
-//    .politque:
-//
-//}
 
+
+
+struct Sources : Decodable {
+    let status: String
+    let sources: [Channel]
+}
+
+
+
+ 
 
 struct Category : Decodable {
     let name: String
-    let channels: [Channel]
+    var channels: [Channel]?
+    
+    init(name:String){
+        self.name = name
+        self.channels = []
+    }
+    
+    init(name: String,channels :[Channel]) {
+        self.name = name
+        self.channels = channels
+    }
 }
 

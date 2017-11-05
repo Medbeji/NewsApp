@@ -7,6 +7,7 @@
 //
 
 import UIKit
+
 class NewsChannelCell : UICollectionViewCell {
     
     let contentCellView : UIView = {
@@ -19,6 +20,13 @@ class NewsChannelCell : UICollectionViewCell {
         myView.layer.masksToBounds = false
         return myView
     }()
+    
+    let imageView: CachedImageView = {
+       let image = CachedImageView()
+        
+        return image
+    }()
+    
     
     
     override init(frame: CGRect) {
@@ -37,14 +45,6 @@ class NewsChannelCell : UICollectionViewCell {
         backgroundColor = .white
     }
     
-    fileprivate func addShadow(){
-        contentView.layer.masksToBounds = true
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOffset = .zero
-        layer.shadowRadius = 2.0
-        layer.shadowOpacity = 1.0
-        layer.masksToBounds = false
-        layer.shadowPath = UIBezierPath(roundedRect:bounds, cornerRadius:contentView.layer.cornerRadius).cgPath
-    }
+   
     
 }
