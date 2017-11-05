@@ -9,10 +9,10 @@
 import UIKit
 
 class HeaderCell : UICollectionViewCell {
-    
-    let headerLabel : UILabel = {
+ 
+        let headerLabel : UILabel = {
         let label = UILabel()
-        label.text = "Todays News"
+        label.text = "All Channels"
         label.font = .boldSystemFont(ofSize: 30)
         return label
     }()

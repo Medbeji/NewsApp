@@ -28,7 +28,6 @@ class CategoryCell : UICollectionViewCell, UICollectionViewDataSource, UICollect
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         setupViews()
     }
     
@@ -102,8 +101,7 @@ class CategoryCell : UICollectionViewCell, UICollectionViewDataSource, UICollect
         // here we pass the id of the selected channel and push to the next channel
         let layout = UICollectionViewFlowLayout()
         let channelVC = ChannelVC(collectionViewLayout: layout)
-        // channelVC.channel = selectedChannel
-        
+        channelVC.channel = self.category?.channels![indexPath.item]
         rootVC?.navigationController?.pushViewController(channelVC, animated: true)
         
         

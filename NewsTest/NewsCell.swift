@@ -11,20 +11,50 @@ import UIKit
 class NewsCell : NewsChannelCell {
     
     var rootVC: ChannelVC?
+    var article: Article? {
+        didSet {
+            if let article = article {
+                if let url = article.urlToImage{
+                    newsImage.loadImage(urlString: url)
+                }
+                newsTitle.text = article.title
+                if let publishedAt = article.publishedAt {
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+                    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+                    dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+                    let publishDateFormatted = String(publishedAt.prefix(19))
+                    if let date = dateFormatter.date(from:publishDateFormatted) {
+                            dateFormatter.dateFormat = "MMM d, h:mm a"
+                            newsDateLabel.text = dateFormatter.string(from: date)
+                    }
+                } else {
+                     newsDateIcon.alpha = 1
+                }
+               
+            }
+        }
+    }
     
     
     lazy var gridView : UIView = {
         let view = UIView()
-        view.backgroundColor = .green
+        // Add Shadow to GridView
+        view.backgroundColor = .white
+        view.layer.shadowColor = UIColor.lightGray.cgColor
+        view.layer.shadowOffset = .zero
+        view.layer.shadowRadius = 4.0
+        view.layer.shadowOpacity = 1.5
+        view.layer.masksToBounds = false
         let tapGestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTapGestureRecognizer(_:)))
         view.addGestureRecognizer(tapGestureRecognizer)
         return view
     }()
     
     
-    let newsImage:  UIImageView = {
-       let image = UIImageView()
-        image.backgroundColor = .gray
+    let newsImage:  CachedImageView = {
+       let image = CachedImageView()
+//        image.backgroundColor = .gray
         return image
     }()
     
@@ -33,7 +63,6 @@ class NewsCell : NewsChannelCell {
         label.text = "This is random title for the project that can fits the size of the box so I need to see the font size is  changing depending on the long text"
         label.font = .systemFont(ofSize: 16)
         label.numberOfLines = 4
-        label.backgroundColor = .blue
         label.sizeToFit()
         return label
     }()
@@ -55,7 +84,7 @@ class NewsCell : NewsChannelCell {
     
     
     override func setupViews() {
-        backgroundColor = .red
+        
         
         addSubview(gridView)
         gridView.addSubview(newsImage)
@@ -81,6 +110,9 @@ class NewsCell : NewsChannelCell {
         
         // Here we open the new tap for the information
         let newsDetailVC = NewsDetailVC()
+        if let url = self.article?.url {
+            newsDetailVC.urlString = url
+        }
         rootVC?.navigationController?.pushViewController(newsDetailVC, animated: true)
         
     }

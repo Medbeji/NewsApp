@@ -1,9 +1,0 @@
-//
-//  News.swift
-//  NewsTest
-//
-//  Created by MedBeji on 04/11/2017.
-//  Copyright © 2017 TeamIO. All rights reserved.
-//
-
-import Foundation
